@@ -10,6 +10,7 @@ module BlockchainInfo
   autoload(:Exchange, 'exchange')
   autoload(:Wallet, 'wallet')
   autoload(:Merchant, 'merchant')
+  autoload(:Data, 'data')
 
   class Configuration
     attr_accessor :domain
