@@ -47,6 +47,8 @@ module BlockchainInfo
         rescue JSON::ParserError => e
           res.body.is_a?(String) ? res.body : {"error" => "invalid json response" }
         end
+      elsif res.code.to_i == 500
+        {"error" => res.body}
       else
         {"error" => "service not available"}
       end
