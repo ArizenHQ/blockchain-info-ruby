@@ -4,7 +4,7 @@ module BlockchainInfo
   protected
 
     def self.query_merchant_api(route, data={})
-      query('fr/api/' + route, data, true)
+      query('fr/api/' + route, data)
     end
 
     def self.query_charts_api(route, data={})
@@ -27,8 +27,8 @@ module BlockchainInfo
       query_auth_wallet_api(route, data)
     end
 
-    def self.query(route, data={}, secure=false)
-      uri = uri_for(route, data, secure)
+    def self.query(route, data={})
+      uri = uri_for(route, data)
       request(uri)
     end
 
@@ -56,10 +56,10 @@ module BlockchainInfo
       {"error" => "connexion refused"}
     end
 
-    def self.uri_for(route, data, secure=true)
+    def self.uri_for(route, data)
       path = '/' + route
       path += "?" + data.to_query if data.present?
-      URI((secure ? "https" : "http") + "://" + File.join(BlockchainInfo.configuration.domain, path))
+      URI("https" + "://" + File.join(BlockchainInfo.configuration.domain, path))
     end
   end
 end
