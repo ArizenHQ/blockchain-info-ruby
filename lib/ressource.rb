@@ -42,18 +42,12 @@ module BlockchainInfo
       end
 
       if res.code.to_i == 200
-        begin
-          JSON.parse(res.body)
-        rescue JSON::ParserError => e
-          res.body.is_a?(String) ? res.body : {"error" => "invalid json response" }
-        end
-      elsif res.code.to_i == 500
-        {"error" => res.body}
+        JSON.parse(res.body)
+      elsif res.kind_of?(Net::HTTPServerError)
+        raise Net::HTTPServerException, res.message
       else
-        {"error" => "service not available"}
+        {"error" => res.body}
       end
-    rescue
-      {"error" => "connexion refused"}
     end
 
     def self.uri_for(route, data)
