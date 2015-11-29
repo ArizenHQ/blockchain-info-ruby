@@ -4,7 +4,8 @@ module BlockchainInfo
   protected
 
     def self.query_merchant_api(route, data={})
-      query('fr/api/' + route, data)
+      data[:key] = BlockchainInfo.configuration.key
+      query('v2/' + route, data)
     end
 
     def self.query_charts_api(route, data={})

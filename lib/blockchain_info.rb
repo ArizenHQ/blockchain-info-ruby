@@ -16,6 +16,7 @@ module BlockchainInfo
     attr_accessor :my_wallet_guid
     attr_accessor :main_password
     attr_accessor :second_password
+    attr_accessor :key
   end
 
   class << self

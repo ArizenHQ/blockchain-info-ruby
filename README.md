@@ -31,6 +31,7 @@ Usage
       c.my_wallet_guid = 'YOUR_GUID_ID'
       c.main_password = 'MY_PASSWORD'
       c.second_password = 'MY_SECOND_PASSWORD'
+      c.key = 'API_KEY'
     end
     
     # View your balance
